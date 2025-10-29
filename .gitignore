@@ -46,7 +46,6 @@ yarn-error.log*
 /config/dev/
 /config/staging/
 
-.lando.yml
 .docker/
 docker-compose*.yml
 
