@@ -1,0 +1,63 @@
+<div class="voting-question-page">
+  <h1>{{ question.title }}</h1>
+  
+  {% if question.show_results %}
+  <div class="current-results">
+    <h3>Resultado:</h3>
+    <div class="results-options">
+      {% for option in options %}
+        <div class="result-option">
+          {% if option.image %}
+            <div class="option-image">
+              <img src="{{ file_url(option.image) }}" alt="{{ option.title }}" style="max-width: 100px; max-height: 100px;">
+            </div>
+          {% endif %}
+          <div class="option-info">
+            <strong>{{ option.title }}</strong>
+            <span class="votes-count">({{ option.votes_count }} votos)</span>
+            {% if option.description %}
+              <p class="option-description">{{ option.description }}</p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="voting-form">
+    {{ voting_form }}
+  </div>
+</div>
+
+<style>
+.voting-question-page .results-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.voting-question-page .result-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.voting-question-page .option-image img {
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.voting-question-page .option-info {
+  flex: 1;
+}
+
+.voting-question-page .option-description {
+  margin: 5px 0 0 0;
+  color: #666;
+  font-size: 0.9em;
+}
+</style>

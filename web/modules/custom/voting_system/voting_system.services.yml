@@ -1,0 +1,4 @@
+services:
+  voting_system.voting_service:
+    class: 'Drupal\voting_system\Service\VotingService'
+    arguments: ['@entity_type.manager']

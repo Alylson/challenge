@@ -1,0 +1,19 @@
+voting_system.admin:
+  title: 'Voting System'
+  description: 'Manage settings for the Voting System.'
+  route_name: voting_system.settings
+  parent: system.admin_config
+  weight: 100
+
+voting_system.admin_settings:
+  title: 'Voting Settings'
+  description: 'General settings for the voting system.'
+  parent: system.admin_config
+  route_name: voting_system.settings
+
+voting_system.questions:
+  title: 'Voting Questions'
+  description: 'Manage voting questions'
+  parent: voting_system.admin
+  route_name: entity.voting_question.collection
+  weight: 10
