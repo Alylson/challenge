@@ -75,6 +75,7 @@ class VotingQuestionForm extends EntityForm
 
             $form['options_section']['add_option'] = [
                 '#type' => 'link',
+                '#title' => $this->t('Adicionar Opção de Votação'),
                 '#url' => Url::fromRoute('entity.voting_option.add_form', [], [
                     'query' => ['question_id' => $votingQuestion->id()]
                 ]),

@@ -31,7 +31,7 @@ yarn-error.log*
 /web/modules/contrib/
 /web/themes/contrib/
 
-*.sql
+backup.sql
 *.sql.gz
 *.sqlite
 
