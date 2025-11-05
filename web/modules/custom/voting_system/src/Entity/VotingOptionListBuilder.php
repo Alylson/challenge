@@ -21,26 +21,20 @@ class VotingOptionListBuilder extends ConfigEntityListBuilder
 
     public function buildRow(EntityInterface $entity)
     {
-        $title = $entity->label();
-        $row['title'] = $title ?: $this->t('(Sem título)');
+        $title = $entity->label() ?: $this->t('Sem título');
+        $row['title'] = $title;
 
         $questionId = $entity->get('question_id');
         $question = NULL;
-        if (!empty($questionId)) {
+        if ($questionId) {
             $question = \Drupal::entityTypeManager()
                 ->getStorage('voting_question')
                 ->load($questionId);
         }
+
         $row['question'] = $question ? $question->label() : $this->t('Desconhecida');
-
-        $row['votes_count'] = $entity->get('votes_count') ?? 0;
-
-        $operations = $this->buildOperations($entity);
-        if (!empty($operations)) {
-            $row['operations']['data'] = $operations;
-        } else {
-            $row['operations']['data'] = [];
-        }
+        $row['votes_count'] = $entity->get('votes_count') ?: 0;
+        $row['operations']['data'] = $this->buildOperations($entity);
 
         return $row + parent::buildRow($entity);
     }
@@ -62,18 +56,6 @@ class VotingOptionListBuilder extends ConfigEntityListBuilder
                         '%question' => $question->label()
                     ]
                 );
-
-                $build['add_link'] = [
-                    '#type' => 'link',
-                    '#title' => $this->t('Adicionar opção de votação'),
-                    '#url' => Url::fromRoute('entity.voting_option.add_form', [], [
-                        'query' => ['question_id' => $questionId]
-                    ]),
-                    '#attributes' => [
-                        'class' => ['button', 'button--primary'],
-                        '#weight' => -10,
-                    ],
-                ];
             }
         }
 
