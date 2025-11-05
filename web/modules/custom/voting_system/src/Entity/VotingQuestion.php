@@ -40,50 +40,50 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *   }
  * )
  */
-class VotingQuestion extends ConfigEntityBase
-{
-    /**
-     * @var string
-     */
-    protected $id;
+class VotingQuestion extends ConfigEntityBase {
 
-    /**
-     * @var string
-     */
-    protected $title;
+  /**
+   * @var string
+   */
+  protected $id;
 
-    /**
-     * @var string
-     */
-    protected $identifier;
+  /**
+   * @var string
+   */
+  protected $title;
 
-    /**
-     * @var bool
-     */
-    protected $enabled = TRUE;
+  /**
+   * @var string
+   */
+  protected $identifier;
 
-    /**
-     * @var bool
-     */
-    protected $show_results = TRUE;
+  /**
+   * @var bool
+   */
+  protected $enabled = TRUE;
 
-    public function isEnabled()
-    {
-        return (bool) $this->enabled;
-    }
+  /**
+   * @var bool
+   */
+  protected $show_results = TRUE;
 
-    public function getOptions()
-    {
-        $storage = \Drupal::entityTypeManager()->getStorage('voting_option');
-        $options = $storage->loadByProperties(['question_id' => $this->id()]);
+  public function isEnabled()
+  {
+    return (bool) $this->enabled;
+  }
 
-        return $options;
-    }
+  public function getOptions()
+  {
+    $storage = \Drupal::entityTypeManager()->getStorage('voting_option');
+    $options = $storage->loadByProperties(['question_id' => $this->id()]);
 
-    public function getOptionCount()
-    {
-        $options =  $this->getOptions();
+    return $options;
+  }
 
-        return count($options);
-    }
+  public function getOptionCount()
+  {
+    $options =  $this->getOptions();
+    
+    return count($options);
+  }
 }

@@ -1,0 +1,35 @@
+voting_question:
+  label: 'Voting Question'
+  label_collection: 'Voting Questions'
+  label_singular: 'voting question'
+  label_plural: 'voting questions'
+  label_count:
+    one: '1 voting question'
+    other: '@count voting questions'
+  handlers:
+    list_builder: 'Drupal\voting_system\Entity\VotingQuestionListBuilder'
+    form:
+      add: 'Drupal\voting_system\Form\VotingQuestionForm'
+      edit: 'Drupal\voting_system\Form\VotingQuestionForm'
+      delete: 'Drupal\Core\Entity\EntityDeleteForm'
+    route_provider:
+      default: 'Drupal\Core\Entity\Routing\AdminHtmlRouteProvider'
+  admin_permission: 'administer voting options'
+  config_prefix: voting_question
+  entity_keys:
+    id: id
+    label: title
+    uuid: uuid
+  links:
+    add-form: /admin/content/voting-question/add
+    edit-form: /admin/content/voting-question/{voting_question}/edit
+    delete-form: /admin/content/voting-question/{voting_question}/delete
+    collection: /admin/content/voting-question
+  config_export:
+    - id
+    - title
+    - enabled
+  lookup_keys:
+    - id
+  lookup_properties:
+    id: {}

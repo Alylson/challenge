@@ -45,6 +45,10 @@ class VotingForm extends FormBase
         $this->showResults = $showResults;
         $this->questionTitle = $questionTitle;
 
+        $voting_service = \Drupal::service('voting_system.voting_service');
+        $hasVoted = $voting_service->hasUserVoted($questionId);
+        $userVote = $voting_service->getUserVote($questionId);
+
         $form['question_id'] = [
             '#type' => 'hidden',
             '#value' => $questionId,
@@ -59,6 +63,31 @@ class VotingForm extends FormBase
                 ]
             ) . '</h3>',
         ];
+
+        if ($hasVoted) {
+            $form['already_voted'] = [
+                '#markup' => '<div class="already-voted-message"><p>' . 
+                    $this->t('Você já votou nesta pergunta. Obrigado pela sua participação!') . 
+                    '</p></div>',
+            ];
+
+            if ($userVote && $userVote !== 'voted') {
+                $userOption = $this->getOptionTitle($userVote);
+                if ($userOption) {
+                    $form['user_vote'] = [
+                        '#markup' => '<div class="user-vote-info"><p><strong>' . 
+                            $this->t('Seu voto: @option', ['@option' => $userOption]) . 
+                            '</strong></p></div>',
+                    ];
+                }
+            }
+
+            $form['results'] = [
+                '#markup' => $this->buildResultsDisplay($options, $showResults),
+            ];
+
+            return $form;
+        }
 
         $optionChoices = [];
         foreach ($options as $option) {
@@ -110,19 +139,62 @@ class VotingForm extends FormBase
 
     public function submitForm(array &$form, FormStateInterface $formState)
     {
-        $option = \Drupal::entityTypeManager()->getStorage('voting_option')
-            ->load($formState->getValue('selected_option'));
+        $selectedOptionId = $formState->getValue('selected_option');
+        $questionId = $formState->getValue('question_id');
 
-        if ($option) {
-            $currentVotes = $option->get('votes_count') ?: 0;
-            $option->set('votes_count', $currentVotes + 1);
-            $option->save();
+        try {
+            $question = \Drupal::entityTypeManager()->getStorage('voting_question')->load($questionId);
+            if (!$question) {
+                throw new \Exception('Pergunta não encontrada');
+            }
 
-            $this->messenger()->addMessage($this->t('Obrigado! Seu voto para "%option" foi registrado com sucesso.', [
-                '%option' => $option->label()
-            ]));
+            $questionIdentifier = $question->get('identifier');
+            $votingService = \Drupal::service('voting_system.voting_service');
+            $result = $votingService->recordVote($questionIdentifier, $selectedOptionId);
+
+            $option = \Drupal::entityTypeManager()->getStorage('voting_option')
+                ->load($formState->getValue('selected_option'));
+
+            if ($option) {
+                // $currentVotes = $option->get('votes_count') ?: 0;
+                // $option->set('votes_count', $currentVotes + 1);
+                // $option->save();
+
+                $this->messenger()->addMessage($this->t('Obrigado! Seu voto para "%option" foi registrado com sucesso.', [
+                    '%option' => $option->label()
+                ]));
+            }
+        } catch (\Exception $e) {
+            $this->messenger()->addError($this->t('Erro: @error', ['@error' => $e->getMessage()]));
         }
 
         $formState->setRedirect('voting_system.voting_page');
+    }
+
+    protected function getOptionTitle($optionId)
+    {
+        try {
+            $option = \Drupal::entityTypeManager()->getStorage('voting_option')->load($optionId);
+            return $option ? $option->label() : NULL;
+        } catch (\Exception $e) {
+            return NULL;
+        }
+    }
+
+    protected function buildResultsDisplay($options, $showResults)
+    {
+        if (!$showResults) {
+            return '<p>' . $this->t('Resultados não estão disponíveis para esta pergunta.') . '</p>';
+        }
+
+        $output = '<div class="voting-results"><h4>' . $this->t('Resultados Atuais:') . '</h4><ul>';
+        
+        foreach ($options as $option) {
+            $output .= '<li>' . $option['title'] . ' (' . $option['votes_count'] . ' votos)</li>';
+        }
+        
+        $output .= '</ul></div>';
+
+        return $output;
     }
 }

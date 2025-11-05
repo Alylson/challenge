@@ -14,6 +14,7 @@ class VotingOptionListBuilder extends ConfigEntityListBuilder
         $header['title'] = $this->t('Título');
         $header['question'] = $this->t('Pergunta');
         $header['votes_count'] = $this->t('Total de votos');
+        $header['operations'] = $this->t('Operações');
 
         return $header + parent::buildHeader();
     }
@@ -21,10 +22,11 @@ class VotingOptionListBuilder extends ConfigEntityListBuilder
     public function buildRow(EntityInterface $entity)
     {
         $row['title'] = $entity->label();
-        $question_id = $entity->get('question_id');
-        $question = \Drupal::entityTypeManager()->getStorage('voting_question')->load($question_id);
-        $row['question'] = $question ? $question->label() : $this->t('Unknown');
+        $questionId = $entity->get('question_id');
+        $question = \Drupal::entityTypeManager()->getStorage('voting_question')->load($questionId);
+        $row['question'] = $question ? $question->label() : $this->t('Desconhecida');
         $row['votes_count'] = $entity->get('votes_count');
+        $row['operations']['data'] = $this->buildOperations($entity);
 
         return $row + parent::buildRow($entity);
     }
@@ -33,10 +35,10 @@ class VotingOptionListBuilder extends ConfigEntityListBuilder
     {
         $build = parent::render();
 
-        if ($question_id = \Drupal::request()->query->get('question_id')) {
+        if ($questionId = \Drupal::request()->query->get('question_id')) {
             $question = \Drupal::entityTypeManager()
                 ->getStorage('voting_question')
-                ->load($question_id);
+                ->load($questionId);
 
             if ($question) {
                 $build['#title'] = $this->t(
@@ -50,10 +52,11 @@ class VotingOptionListBuilder extends ConfigEntityListBuilder
                     '#type' => 'link',
                     '#title' => $this->t('Adicionar opção de votação'),
                     '#url' => Url::fromRoute('entity.voting_option.add_form', [], [
-                        'query' => ['question_id' => $question_id]
+                        'query' => ['question_id' => $questionId]
                     ]),
                     '#attributes' => [
                         'class' => ['button', 'button--primary'],
+                        '#weight' => -10,
                     ],
                 ];
             }
@@ -66,8 +69,8 @@ class VotingOptionListBuilder extends ConfigEntityListBuilder
     {
         $query = $this->getStorage()->getQuery();
 
-        if ($question_id = \Drupal::request()->query->get('question_id')) {
-            $query->condition('question_id', $question_id);
+        if ($questionId = \Drupal::request()->query->get('question_id')) {
+            $query->condition('question_id', $questionId);
         }
 
         $query->sort($this->entityType->getKey('id'));

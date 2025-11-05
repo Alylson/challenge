@@ -3,3 +3,9 @@ entity.voting_question.add_form:
   title: 'Adicionar Pergunta de Votação'
   appears_on:
     - entity.voting_question.collection
+
+entity.voting_option.add_form:
+  route_name: entity.voting_option.add_form
+  title: 'Adicionar Opção de Votação'
+  appears_on:
+    - entity.voting_option.collection

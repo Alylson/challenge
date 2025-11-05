@@ -17,6 +17,9 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *       "edit" = "Drupal\voting_system\Form\VotingOptionForm",
  *       "delete" = "Drupal\Core\Entity\EntityDeleteForm",
  *     }
+ *   }, 
+ *   "route_provider" = {
+ *     "default" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider"
  *   },
  *   config_prefix = "voting_option",
  *   admin_permission = "Administer voting options",
@@ -36,8 +39,8 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "title",
  *     "description",
  *     "image",
- *     "votes_count",
- *     "question_id"
+ *     "votesCount",
+ *     "questionId"
  *   }
  * )
  */
@@ -66,40 +69,40 @@ class VotingOption extends ConfigEntityBase
     /**
      * @var int
      */
-    protected $votes_count = 0;
+    protected $votesCount = 0;
 
     /**
      * @var string
      */
-    protected $question_id;
+    protected $questionId;
 
     public function getQuestionId()
     {
-        return $this->question_id;
+        return $this->questionId;
     }
 
-    public function setQuestionId($question_id)
+    public function setQuestionId($questionId)
     {
-        $this->question_id = $question_id;
+        $this->questionId = $questionId;
 
         return $this;
     }
 
     public function getVotesCount()
     {
-        return $this->votes_count;
+        return $this->votesCount;
     }
 
-    public function setVotesCount($votes_count)
+    public function setVotesCount($votesCount)
     {
-        $this->votes_count = $votes_count;
+        $this->votesCount = $votesCount;
 
         return $this;
     }
 
     public function incrementVotes()
     {
-        $this->votes_count++;
+        $this->votesCount++;
 
         return $this;
     }
