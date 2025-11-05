@@ -26,21 +26,21 @@ use Drupal\Core\Field\BaseFieldDefinition;
  */
 class Vote extends ContentEntityBase {
 
-  public static function baseFieldDefinitions(EntityTypeInterface $entity_type)
+  public static function baseFieldDefinitions(EntityTypeInterface $entityType)
   {
-    $fields = parent::baseFieldDefinitions($entity_type);
+    $fields = parent::baseFieldDefinitions($entityType);
 
     $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('User'))
+      ->setLabel(t('Usuário'))
       ->setSetting('target_type', 'user')
       ->setRequired(FALSE);
 
     $fields['ip_address'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('IP Address'))
+      ->setLabel(t('Endereço IP'))
       ->setRequired(FALSE);
 
     $fields['option_id'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Voting Option'))
+      ->setLabel(t('Opção de Votação'))
       ->setSetting('target_type', 'voting_option')
       ->setRequired(TRUE);
 
