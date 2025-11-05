@@ -1,0 +1,13 @@
+manager voting system:
+  title: 'Manage Voting System'
+  description: 'Allow users to manage the voting system.'
+  restrict access: false
+
+administer voting options:
+  title: 'Administer voting options'
+  description: 'Create, edit, and delete voting questions and options.'
+  restrict access: true
+
+access voting content:
+  title: 'Access voting content'
+  description: 'View voting questions and participate in voting.'

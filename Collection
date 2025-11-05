@@ -1,0 +1,345 @@
+{
+	"log": {
+		"version": "1.2",
+		"creator": {
+			"name": "Insomnia REST Client",
+			"version": "insomnia.desktop.app:v11.6.2"
+		},
+		"entries": [
+			{
+				"startedDateTime": "2025-11-05T02:15:13.143Z",
+				"time": 1661.489,
+				"request": {
+					"method": "GET",
+					"url": "http://challenge.lndo.site/api/voting/questions/the_best_program_language/results",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.2"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Cache-Control",
+							"value": "must-revalidate, no-cache, private"
+						},
+						{
+							"name": "Content-Language",
+							"value": "pt-br"
+						},
+						{
+							"name": "Content-Length",
+							"value": "485"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 05 Nov 2025 01:32:35 GMT"
+						},
+						{
+							"name": "Expires",
+							"value": "Sun, 19 Nov 1978 05:00:00 GMT"
+						},
+						{
+							"name": "Server",
+							"value": "nginx"
+						},
+						{
+							"name": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"name": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"name": "X-Generator",
+							"value": "Drupal 11 (https://www.drupal.org)"
+						},
+						{
+							"name": "X-Powered-By",
+							"value": "PHP/8.3.23"
+						}
+					],
+					"content": {
+						"size": 485,
+						"mimeType": "application/json",
+						"text": "{\"status\":\"success\",\"data\":{\"question\":{\"id\":\"program_language_id\",\"title\":\"Qual a melhor linguagem de programa\\u00e7\\u00e3o na sua opini\\u00e3o?\",\"identifier\":\"the_best_program_language\",\"total_votes\":0},\"options\":[{\"id\":\"voting_question_id_java\",\"title\":\"JAVA\",\"description\":\"Linguagem de programa\\u00e7\\u00e3o Java\",\"votes_count\":0,\"percentage\":0},{\"id\":\"voting_question_id_php\",\"title\":\"PHP\",\"description\":\"Linguagem de programa\\u00e7\\u00e3o PHP\",\"votes_count\":0,\"percentage\":0}]}}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 1661.489,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "voting questions results"
+			},
+			{
+				"startedDateTime": "2025-11-05T02:15:13.143Z",
+				"time": 0,
+				"request": {
+					"method": "GET",
+					"url": "http://challenge.lndo.site/api/voting/questions/the_best_program_language/vote",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.2"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"option_id\": 1\n}"
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 0,
+					"statusText": "",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [],
+					"content": {
+						"size": 0,
+						"mimeType": ""
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 0,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "vote voting question"
+			},
+			{
+				"startedDateTime": "2025-11-05T02:15:13.143Z",
+				"time": 1790.0929999999998,
+				"request": {
+					"method": "GET",
+					"url": "http://challenge.lndo.site/api/voting/questions/the_best_program_language",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.2"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Cache-Control",
+							"value": "must-revalidate, no-cache, private"
+						},
+						{
+							"name": "Content-Language",
+							"value": "pt-br"
+						},
+						{
+							"name": "Content-Length",
+							"value": "766"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Date",
+							"value": "Mon, 03 Nov 2025 17:31:20 GMT"
+						},
+						{
+							"name": "Expires",
+							"value": "Sun, 19 Nov 1978 05:00:00 GMT"
+						},
+						{
+							"name": "Server",
+							"value": "nginx"
+						},
+						{
+							"name": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"name": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"name": "X-Generator",
+							"value": "Drupal 11 (https://www.drupal.org)"
+						},
+						{
+							"name": "X-Powered-By",
+							"value": "PHP/8.3.23"
+						}
+					],
+					"content": {
+						"size": 766,
+						"mimeType": "application/json",
+						"text": "{\"status\":\"success\",\"data\":{\"id\":\"voting_question_id\",\"title\":\"Qual a melhor linguagem de programa\\u00e7\\u00e3o na sua opini\\u00e3o?\",\"identifier\":\"the_best_program_language\",\"enabled\":true,\"show_results\":1,\"options\":[{\"id\":\"voting_question_id_java\",\"title\":\"JAVA\",\"description\":\"Linguagem de programa\\u00e7\\u00e3o Java\",\"image\":\"https:\\/\\/www.google.com\\/url?sa=i\\u0026url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FJava_%2528programming_language%2529\\u0026psig=AOvVaw361dS\",\"votes_count\":1},{\"id\":\"voting_question_id_php\",\"title\":\"PHP\",\"description\":\"Linguagem de programa\\u00e7\\u00e3o PHP\",\"image\":\"https:\\/\\/www.google.com\\/url?sa=i\\u0026url=https%3A%2F%2Fpt.wikipedia.org%2Fwiki%2FPHP\\u0026psig=AOvVaw1wljAjrXz1GAElPnyktWUd\\u0026ust=1762199141\",\"votes_count\":2}]}}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 1790.0929999999998,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "specific voting question"
+			},
+			{
+				"startedDateTime": "2025-11-05T02:15:13.143Z",
+				"time": 1733.335,
+				"request": {
+					"method": "GET",
+					"url": "http://challenge.lndo.site/api/voting/questions",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "User-Agent",
+							"value": "insomnia/11.6.2"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": ""
+					},
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Cache-Control",
+							"value": "must-revalidate, no-cache, private"
+						},
+						{
+							"name": "Content-Language",
+							"value": "pt-br"
+						},
+						{
+							"name": "Content-Length",
+							"value": "63"
+						},
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Date",
+							"value": "Wed, 05 Nov 2025 01:32:21 GMT"
+						},
+						{
+							"name": "Expires",
+							"value": "Sun, 19 Nov 1978 05:00:00 GMT"
+						},
+						{
+							"name": "Server",
+							"value": "nginx"
+						},
+						{
+							"name": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"name": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"name": "X-Generator",
+							"value": "Drupal 11 (https://www.drupal.org)"
+						},
+						{
+							"name": "X-Powered-By",
+							"value": "PHP/8.3.23"
+						}
+					],
+					"content": {
+						"size": 63,
+						"mimeType": "application/json",
+						"text": "{\"status\":\"success\",\"count\":0,\"data\":[],\"timestamp\":1762306341}"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 1733.335,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "voting questions"
+			}
+		]
+	}
+}

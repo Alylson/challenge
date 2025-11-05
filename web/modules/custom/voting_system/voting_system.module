@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Hooks and general module functions for Voting System.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function voting_system_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.voting_system':
+      return t('Módulo do sistema de votação com perguntas e opções de respostas cadastradas por usuário administrador.');
+  }
+}

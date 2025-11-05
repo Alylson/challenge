@@ -1,0 +1,135 @@
+voting_system.settings:
+  path: '/admin/config/voting-system/settings'
+  defaults:
+    _form: '\Drupal\voting_system\Form\VotingSettingsForm'
+    _title: 'Voting System Settings'
+  requirements:
+    _permission: 'administer site configuration'
+
+################# Entity Voting Question Routes #################
+
+voting_system.question_page:
+  path: '/voting/{identifier}'
+  defaults:
+    _controller: '\Drupal\voting_system\Controller\VotingQuestionController::content'
+    _title: 'Voting'
+  requirements:
+    _permission: 'access content'
+
+entity.voting_question.collection:
+  path: '/admin/content/voting-question'
+  defaults:
+    _entity_list: 'voting_question'
+    _title: 'Voting Questions'
+  requirements:
+    _permission: 'administer voting options'
+
+entity.voting_question.add_form:
+  path: '/admin/content/voting-question/add'
+  defaults:
+    _entity_form: 'voting_question.add'
+    _title: 'Add Voting Question'
+  requirements:
+    _permission: 'administer voting options'
+
+entity.voting_question.edit_form:
+  path: '/admin/content/voting-question/{voting_question}/edit'
+  defaults:
+    _entity_form: 'voting_question.edit'
+    _title: 'Edit Voting Question'
+  requirements:
+    _permission: 'administer voting options'
+
+entity.voting_question.delete_form:
+  path: '/admin/content/voting-question/{voting_question}/delete'
+  defaults:
+    _entity_form: 'voting_question.delete'
+    _title: 'Delete Voting Question'
+  requirements:
+    _permission: 'administer voting options'
+
+################# Entity Voting Option Routes #################
+
+entity.voting_option.collection:
+  path: '/admin/content/voting-option'
+  defaults:
+    _entity_list: 'voting_option'
+    _title: 'Voting Options'
+  requirements:
+    _permission: 'administer voting options'
+
+entity.voting_option.add_form:
+  path: '/admin/content/voting-option/add'
+  defaults:
+    _entity_form: 'voting_option.add'
+    _title: 'Add Voting Option'
+  requirements:
+    _permission: 'administer voting options'
+
+entity.voting_option.edit_form:
+  path: '/admin/content/voting-option/{voting_option}/edit'
+  defaults:
+    _entity_form: 'voting_option.edit'
+    _title: 'Edit Voting Option'
+  requirements:
+    _permission: 'administer voting options'
+
+entity.voting_option.delete_form:
+  path: '/admin/content/voting-option/{voting_option}/delete'
+  defaults:
+    _entity_form: 'voting_option.delete'
+    _title: 'Delete Voting Option'
+  requirements:
+    _permission: 'administer voting options'
+
+################# API Routes #################
+
+voting_system.api_questions:
+  path: '/api/voting/questions'
+  defaults:
+    _controller: '\Drupal\voting_system\Controller\ApiController::listQuestions'
+    _format: 'json'
+  requirements:
+    _permission: 'access content'
+
+voting_system.api_question:
+  path: '/api/voting/questions/{identifier}'
+  defaults:
+    _controller: '\Drupal\voting_system\Controller\ApiController::getQuestion'
+    _format: 'json'
+  requirements:
+    _permission: 'access content'
+
+voting_system.api_vote:
+  path: '/api/voting/questions/{identifier}/vote'
+  defaults:
+    _controller: '\Drupal\voting_system\Controller\ApiController::vote'
+    _format: 'json'
+  requirements:
+    _permission: 'access content'
+
+voting_system.api_results:
+  path: '/api/voting/questions/{identifier}/results'
+  defaults:
+    _controller: '\Drupal\voting_system\Controller\ApiController::results'
+    _format: 'json'
+  requirements:
+    _permission: 'access content'
+
+################## Additional Pages #################
+
+voting_system.homepage:
+  path: '/voting-homepage'
+  defaults:
+    _controller: '\Drupal\voting_system\Controller\HomePageController::content'
+    _title: 'Página inicial'
+  requirements:
+    _permission: 'access content'
+
+voting_system.voting_page:
+  path: '/voting'
+  defaults:
+    _controller: '\Drupal\voting_system\Controller\VotingPageController::content'
+    _title: 'Voting Page'
+  requirements:
+    _permission: 'access content'

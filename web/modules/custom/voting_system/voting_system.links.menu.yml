@@ -1,0 +1,20 @@
+voting_system.admin:
+  title: 'Voting System'
+  description: 'Gerencie as opções e perguntas da votação.'
+  parent: system.admin_config
+  route_name: entity.voting_question.collection
+  weight: 10
+
+voting_system.questions:
+  title: 'Voting Questions'
+  description: 'Gerencie as perguntas da votação.'
+  parent: voting_system.admin
+  route_name: entity.voting_question.collection
+  weight: 0
+
+# voting_system.admin:
+#   title: 'Voting System'
+#   description: 'Gerencie as opções e perguntas da votação.'
+#   parent: system.admin_config
+#   route_name: voting_system.settings
+#   weight: 100

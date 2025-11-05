@@ -1,0 +1,46 @@
+.option-with-image {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.option-with-image img {
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.option-text {
+  flex: 1;
+}
+
+.form-radios {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-type-radio {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: background-color 0.2s;
+}
+
+.form-type-radio:hover {
+  background-color: #f5f5f5;
+}
+
+.form-type-radio input[type="radio"] {
+  margin-right: 10px;
+}
+
+.form-item__label.option {
+  display: inline-block !important;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  vertical-align: super !important;
+}
