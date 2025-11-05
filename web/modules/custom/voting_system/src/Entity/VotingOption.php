@@ -17,9 +17,6 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *       "edit" = "Drupal\voting_system\Form\VotingOptionForm",
  *       "delete" = "Drupal\Core\Entity\EntityDeleteForm",
  *     }
- *   }, 
- *   "route_provider" = {
- *     "default" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider"
  *   },
  *   config_prefix = "voting_option",
  *   admin_permission = "Administer voting options",

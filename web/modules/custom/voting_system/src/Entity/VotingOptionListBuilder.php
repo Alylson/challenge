@@ -21,15 +21,30 @@ class VotingOptionListBuilder extends ConfigEntityListBuilder
 
     public function buildRow(EntityInterface $entity)
     {
-        $row['title'] = $entity->label();
+        $title = $entity->label();
+        $row['title'] = $title ?: $this->t('(Sem título)');
+
         $questionId = $entity->get('question_id');
-        $question = \Drupal::entityTypeManager()->getStorage('voting_question')->load($questionId);
+        $question = NULL;
+        if (!empty($questionId)) {
+            $question = \Drupal::entityTypeManager()
+                ->getStorage('voting_question')
+                ->load($questionId);
+        }
         $row['question'] = $question ? $question->label() : $this->t('Desconhecida');
-        $row['votes_count'] = $entity->get('votes_count');
-        $row['operations']['data'] = $this->buildOperations($entity);
+
+        $row['votes_count'] = $entity->get('votes_count') ?? 0;
+
+        $operations = $this->buildOperations($entity);
+        if (!empty($operations)) {
+            $row['operations']['data'] = $operations;
+        } else {
+            $row['operations']['data'] = [];
+        }
 
         return $row + parent::buildRow($entity);
     }
+
 
     public function render()
     {
