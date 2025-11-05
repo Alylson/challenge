@@ -40,8 +40,7 @@ class VotingQuestionListBuilder extends ConfigEntityListBuilder
         ];
 
         return $operations;
-   }
-
+    }
 
     public function render(): array
     {

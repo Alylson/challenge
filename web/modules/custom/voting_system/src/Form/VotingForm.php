@@ -156,10 +156,6 @@ class VotingForm extends FormBase
                 ->load($formState->getValue('selected_option'));
 
             if ($option) {
-                // $currentVotes = $option->get('votes_count') ?: 0;
-                // $option->set('votes_count', $currentVotes + 1);
-                // $option->save();
-
                 $this->messenger()->addMessage($this->t('Obrigado! Seu voto para "%option" foi registrado com sucesso.', [
                     '%option' => $option->label()
                 ]));

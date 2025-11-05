@@ -8,7 +8,6 @@ use Drupal\Core\Url;
 
 class VotingOptionListBuilder extends ConfigEntityListBuilder
 {
-
     public function buildHeader()
     {
         $header['title'] = $this->t('Título');
