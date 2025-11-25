@@ -36,8 +36,8 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "title",
  *     "description",
  *     "image",
- *     "votesCount",
- *     "questionId"
+ *     "votes_count",
+ *     "question_id"
  *   }
  * )
  */
@@ -66,40 +66,40 @@ class VotingOption extends ConfigEntityBase
     /**
      * @var int
      */
-    protected $votesCount = 0;
+    protected $votes_count = 0;
 
     /**
      * @var string
      */
-    protected $questionId;
+    protected $question_id;
 
     public function getQuestionId()
     {
-        return $this->questionId;
+        return $this->question_id;
     }
 
-    public function setQuestionId($questionId)
+    public function setQuestionId($question_id)
     {
-        $this->questionId = $questionId;
+        $this->question_id = $question_id;
 
         return $this;
     }
 
     public function getVotesCount()
     {
-        return $this->votesCount;
+        return $this->votes_count;
     }
 
-    public function setVotesCount($votesCount)
+    public function setVotesCount($votes_count)
     {
-        $this->votesCount = $votesCount;
+        $this->votes_count = $votes_count;
 
         return $this;
     }
 
     public function incrementVotes()
     {
-        $this->votesCount++;
+        $this->votes_count++;
 
         return $this;
     }

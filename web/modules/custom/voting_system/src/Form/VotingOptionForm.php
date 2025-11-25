@@ -88,6 +88,8 @@ class VotingOptionForm extends EntityForm
             $votingOption->set('id', $formState->getValue('id'));
         }
 
+        $votingOption->set('question_id', $formState->getValue('question_id'));
+
         $status = $votingOption->save();
 
         if ($status == SAVED_NEW) {

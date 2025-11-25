@@ -22,17 +22,19 @@ class VotingOptionListBuilder extends ConfigEntityListBuilder
     {
         $title = $entity->label() ?: $this->t('Sem título');
         $row['title'] = $title;
+        $questionId = $entity->getQuestionId();
 
-        $questionId = $entity->get('question_id');
-        $question = NULL;
-        if ($questionId) {
+        if (!empty($questionId)) {
             $question = \Drupal::entityTypeManager()
                 ->getStorage('voting_question')
                 ->load($questionId);
+
+            $row['question'] = $question ? $question->label() : $this->t('Desconhecida');
+        } else {
+            $row['question'] = $this->t('Sem pergunta');
         }
 
-        $row['question'] = $question ? $question->label() : $this->t('Desconhecida');
-        $row['votes_count'] = $entity->get('votes_count') ?: 0;
+        $row['votes_count'] = $entity->getVotesCount() ?? 0;
         $row['operations']['data'] = $this->buildOperations($entity);
 
         return $row + parent::buildRow($entity);
@@ -63,18 +65,14 @@ class VotingOptionListBuilder extends ConfigEntityListBuilder
 
     protected function getEntityIds()
     {
-        $query = $this->getStorage()->getQuery();
+        $options = $this->getStorage()->loadMultiple();
 
         if ($questionId = \Drupal::request()->query->get('question_id')) {
-            $query->condition('question_id', $questionId);
+            $options = array_filter($options, function ($option) use ($questionId) {
+                return $option->getQuestionId() === $questionId;
+            });
         }
 
-        $query->sort($this->entityType->getKey('id'));
-
-        if ($this->limit) {
-            $query->pager($this->limit);
-        }
-
-        return $query->execute();
+        return array_keys($options);
     }
 }
